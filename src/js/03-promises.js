@@ -1,6 +1,7 @@
 import Notiflix from 'notiflix';
 import 'notiflix/dist/notiflix-3.2.5.min.css';
 
+const btnRef = document.querySelector('[type="submit"]');
 const form = document.querySelector('.form');
 
 const firstDelayMs = document.querySelector('[name="delay"]');
@@ -11,11 +12,15 @@ form.addEventListener('submit', submitCreatePromises);
 
 function submitCreatePromises(e) {
   e.preventDefault();
+  btnRef.disabled = true;
 
-  let delay = firstDelayMs.valueAsNumber;
-  const delayStepVal = delayStepMs.valueAsNumber;
-  const amountVal = amount.valueAsNumber;
+  let delay = +firstDelayMs.valueAsNumber;
+  const delayStepVal = +delayStepMs.valueAsNumber;
+  const amountVal = +amount.valueAsNumber;
 
+  setTimeout(() => {
+    btnRef.disabled = false;
+  }, amountVal * delayStepVal + delay)
   for (let i = 1; i <= amountVal; i++) {
     createPromise(i, delay)
       .then(({ position, delay }) => {
