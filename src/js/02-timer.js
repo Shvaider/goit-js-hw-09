@@ -18,7 +18,7 @@ const options = {
   defaultDate: new Date(),
   minuteIncrement: 1,
   onClose(selectedDates) {
-    delta = selectedDates[0] - options.defaultDate;
+    delta = selectedDates[0] <= new Date();
     if (delta < 0) {
       btnStart.setAttribute('disabled', 'disabled');
       Notify.failure('Please, choose a date in the future');

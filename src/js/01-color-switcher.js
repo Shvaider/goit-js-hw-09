@@ -15,8 +15,10 @@ function startChanging() {
   intervalId = setInterval(() => {
     body.style.backgroundColor = getRandomHexColor();
   }, 1000);
+  startBtn.setAttribute('disabled', true);
 }
 
 function stopChanging() {
   clearInterval(intervalId);
+  startBtn.removeAttribute('disabled');
 }
